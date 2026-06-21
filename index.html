@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#0a0a12">
+  <meta name="description" content="Sebuah hadiah ulang tahun penuh sihir untuk Aik Jeje♡">
+  <meta name="format-detection" content="telephone=no">
+  <title>Happy Birthday, Aik Jeje♡</title>
+
+  <!-- Prahubung & Prefetch DNS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://raw.githubusercontent.com">
+  <link rel="dns-prefetch" href="https://raw.githubusercontent.com">
+  <link rel="preconnect" href="https://github.com">
+  <link rel="dns-prefetch" href="https://github.com">
+
+  <!-- Pramuat CSS Font Google (sumber kritis) -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Sacramento&family=Comfortaa:wght@300;400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sacramento&family=Comfortaa:wght@300;400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap">
+
+  <!-- Pramuat gambar kritis di atas lipatan -->
+  <link rel="preload" as="image" href="https://raw.githubusercontent.com/grevaldoimanuel/ultahaikjeje2026/refs/heads/main/bubududu.gif" fetchpriority="high">
+  <link rel="preload" as="image" href="https://raw.githubusercontent.com/grevaldoimanuel/ultahaikjeje2026/refs/heads/main/scuba-cat.webp" fetchpriority="high">
+  <link rel="preload" as="image" href="https://raw.githubusercontent.com/grevaldoimanuel/ultahaikjeje2026/refs/heads/main/1.jpg" fetchpriority="high">
+
+  <!-- Pramuat musik latar -->
+  <link rel="preload" as="audio" href="https://github.com/grevaldoimanuel/ultahaikjeje2026/raw/refs/heads/main/Shape%20of%20My%20Heart.mp3">
+
+  <!-- Lembar Gaya -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body align="center">
+
+  <!-- Lapisan Tap untuk Masuk -->
+  <div id="tap-overlay" class="tap-overlay">
+    <div class="tap-overlay-bg"></div>
+    <div class="tap-overlay-content" align="center">
+      <div class="tap-overlay-stars">✦ ✧ ✦ ✧ ✦</div>
+      <div class="tap-overlay-icon">🪄</div>
+      <div class="tap-overlay-text">Tap to Step Into a Little Dream</div>
+      <div class="tap-overlay-sub">Something enchanting is waiting just for you, darling♡</div>
+      <div class="tap-overlay-pulse"></div>
+      <div class="tap-overlay-stars-bottom">✧ ✦ ✧ ✦ ✧</div>
+    </div>
+  </div>
+
+  <!-- Layar Pembuka -->
+  <div id="splash" class="splash" style="opacity: 0; pointer-events: none;">
+    <canvas id="splash-canvas" class="splash-canvas"></canvas>
+    <div class="splash-overlay">
+      <div class="splash-charms" id="splash-charms"></div>
+
+      <div class="splash-center" align="center">
+        <div class="splash-bubududu">
+          <img class="bubududu-gif" src="https://raw.githubusercontent.com/grevaldoimanuel/ultahaikjeje2026/refs/heads/main/bubududu.gif" alt="Bubu & Dudu" width="200" height="200" fetchpriority="high">
+        </div>
+
+        <h1 class="splash-title">Shhh… A Little Universe of Magic Awaits You, Darling♡</h1>
+        <p class="splash-sub">A sprinkle of stardust and a whole lot of love, just for you♡</p>
+
+        <!-- Hitungan Mundur dengan Kucing Scuba mengapit grid -->
+        <div class="splash-countdown" id="splash-countdown" align="center">
+          <div class="splash-countdown-wrap">
+            <div class="splash-cat-left">
+              <img src="https://raw.githubusercontent.com/grevaldoimanuel/ultahaikjeje2026/refs/heads/main/scuba-cat.webp" alt="Kucing Scuba" fetchpriority="high" loading="eager">
+            </div>
+            <div class="splash-cd-grid">
+              <div class="splash-cd-card"><div class="splash-cd-num" id="scd-days">0</div><div class="splash-cd-label">Days</div></div>
+              <div class="splash-cd-card"><div class="splash-cd-num" id="scd-hours">0</div><div class="splash-cd-label">Hours</div></div>
+              <div class="splash-cd-card"><div class="splash-cd-num" id="scd-mins">0</div><div class="splash-cd-label">Mins</div></div>
+              <div class="splash-cd-card"><div class="splash-cd-num" id="scd-secs">0</div><div class="splash-cd-label">Secs</div></div>
+            </div>
+            <div class="splash-cat-right">
+              <img src="https://raw.githubusercontent.com/grevaldoimanuel/ultahaikjeje2026/refs/heads/main/scuba-cat.webp" alt="Kucing Scuba" fetchpriority="high" loading="eager">
+            </div>
+          </div>
+          <p class="splash-cd-msg" id="scd-msg">Every heartbeat brings us closer to your most magical day, darling! ♡</p>
+        </div>
+
+        <!-- Input Kata Sandi -->
+        <div class="splash-password" id="splash-password" align="center">
+          <p class="splash-pw-hint">Psst, my love… whisper the secret word and let the magic bloom🤫✨</p>
+          <div class="splash-pw-wrap">
+            <div class="splash-pw-field">
+              <input type="password" id="pw-input" class="splash-pw-input" placeholder="" autocomplete="off" inputmode="text">
+              <span class="splash-pw-marquee" id="pw-marquee">Whisper the magic word, my love…</span>
+            </div>
+            <button class="splash-pw-btn" id="pw-btn" aria-label="Buka Kunci">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0110 0v4"></path></svg>
+            </button>
+          </div>
+          <p class="splash-pw-error" id="pw-error"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lapisan H-1 Menit -->
+  <div id="h1m-overlay" class="h1m-overlay" style="display: none;">
+    <div class="h1m-particles" id="h1m-particles"></div>
+    <div class="h1m-content" align="center">
+      <div class="h1m-label" id="h1m-label">The Final Minute</div>
+      <div class="h1m-ring-wrap">
+        <svg class="h1m-ring" viewBox="0 0 200 200">
+          <circle class="h1m-ring-bg" cx="100" cy="100" r="90"></circle>
+          <circle class="h1m-ring-fill" id="h1m-ring-fill" cx="100" cy="100" r="90"></circle>
+        </svg>
+        <div class="h1m-number" id="h1m-number">60</div>
+      </div>
+      <div class="h1m-message" id="h1m-message">Every heartbeat brings us closer, darling♡</div>
+    </div>
+    <div class="h1m-progress-bar"><div class="h1m-progress-fill" id="h1m-progress-fill"></div></div>
+  </div>
+
+  <!-- Jejak Bintang -->
+  <div class="sparkle-trail" id="sparkle-trail"></div>
+
+  <!-- Hati dari Tap -->
+  <div class="tap-hearts" id="tap-hearts"></div>
+
+  <!-- Kanvas Latar Belakang -->
+  <canvas id="bg-canvas" class="bg-canvas"></canvas>
+
+  <!-- Elemen Mengambang Latar -->
+  <div class="bg-floaters" id="bg-floaters"></div>
+
+  <!-- Bentuk Dekoratif Mengambang -->
+  <div class="floating-shape floating-shape-1"></div>
+  <div class="floating-shape floating-shape-2"></div>
+  <div class="floating-shape floating-shape-3"></div>
+
+  <!-- Konten Utama -->
+  <main id="main" class="main" style="display: none;" align="center">
+
+    <!-- Bagian Hero -->
+    <section class="hero" id="hero" align="center">
+      <div class="hero-particles" id="hero-particles"></div>
+      <div class="hero-content" align="center">
+        <div class="hero-animal hero-animal-1">♋</div>
+        <div class="hero-animal hero-animal-2">🦁</div>
+        <div class="hero-animal hero-animal-3">🧸</div>
+        <div class="hero-animal hero-animal-4">🌸</div>
+        <div class="hero-animal hero-animal-5">🐑</div>
+        <div class="hero-animal hero-animal-6">🦀</div>
+        <div class="hero-animal hero-animal-7 hero-zodiac">🐱</div>
+        <div class="hero-animal hero-animal-8 hero-zodiac">🦋</div>
+        <h1 class="hero-title">
+          <span class="hero-line hero-line-1">Happy Birthday,</span>
+          <span class="hero-line hero-line-2">Aik Jeje♡</span>
+        </h1>
+        <p class="hero-desc">The stars threw the most beautiful party the day you were born — ever since, the world has been softer, sweeter, and endlessly more enchanting because you're in it♡</p>
+        <div class="hero-cake">🎂</div>
+        <div class="scroll-cue">
+          <span>Keep wandering, my lovely — more magic awaits♡</span>
+          <div class="scroll-cue-arrow"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pemisah Bercahaya 1 -->
+    <div class="glow-divider" align="center"><span>✦</span><span>♋</span><span>🦁</span><span>✦</span></div>
+
+    <!-- Bagian Slideshow — Galeri Sinematik -->
+    <section class="section slideshow-section" id="slideshow-section" align="center">
+      <h2 class="section-heading">📷 Moments That Make My Heart Skip a Little Beat♡</h2>
+      <div class="slideshow" id="slideshow">
+        <!-- Area tampilan foto dengan panah dan bilah kemajuan di dalam -->
+        <div class="slide-viewport">
+          <div class="slides-wrap" id="slides-wrap">
+            <!-- Slide dibuat secara dinamis oleh JS -->
+          </div>
+          <!-- Panah Sebelumnya/Berikutnya di dalam area tampilan -->
+          <button class="slide-arrow slide-arrow-l" id="slide-prev" aria-label="Sebelumnya">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          </button>
+          <button class="slide-arrow slide-arrow-r" id="slide-next" aria-label="Berikutnya">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
+          <!-- Bilah kemajuan tipis di bagian bawah foto -->
+          <div class="slide-progress"><div class="slide-progress-fill" id="slide-progress-fill"></div></div>
+        </div>
+        <!-- Keterangan di bawah foto -->
+        <div class="slide-caption" id="slide-caption">
+          <span class="slide-caption-num" id="slide-caption-num">01</span>
+          <span class="slide-caption-text" id="slide-caption-text"></span>
+          <span class="slide-caption-icon" id="slide-caption-icon"></span>
+        </div>
+        <!-- Titik navigasi + penghitung -->
+        <div class="slide-nav">
+          <div class="slide-dots" id="slide-dots"></div>
+          <div class="slide-counter" id="slide-counter">1 / 100</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pemisah Bercahaya 2 -->
+    <div class="glow-divider" align="center"><span>✧</span><span>🌸</span><span>✧</span></div>
+
+    <!-- Bagian Surat -->
+    <section class="section letter-section" id="letter-section" align="center">
+      <h2 class="section-heading">💌 A Love Letter, Written Just for You♡</h2>
+      <div class="letter-stage" align="center">
+        <div class="envelope-wrap" id="envelope-wrap">
+          <div class="envelope" id="envelope">
+            <div class="env-letter-peek">
+              <span class="env-letter-peek-text">My dearest…</span>
+            </div>
+            <div class="env-body">
+              <svg class="env-heart-svg" viewBox="0 0 200 180" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                <defs>
+                  <linearGradient id="envGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color: #ede4f6;"></stop>
+                    <stop offset="35%" style="stop-color: #e8daf2;"></stop>
+                    <stop offset="65%" style="stop-color: #e0cce9;"></stop>
+                    <stop offset="100%" style="stop-color: #d8bfe2;"></stop>
+                  </linearGradient>
+                  <clipPath id="heartClip">
+                    <path d="M100,160 C60,130 0,100 0,55 C0,25 20,0 50,0 C72,0 90,14 100,35 C110,14 128,0 150,0 C180,0 200,25 200,55 C200,100 140,130 100,160Z"></path>
+                  </clipPath>
+                  <pattern id="envTexture" x="0" y="0" width="15" height="15" patternUnits="userSpaceOnUse">
+                    <line x1="0" y1="0" x2="15" y2="15" stroke="rgba(192,132,252,0.04)" stroke-width="1"></line>
+                    <line x1="15" y1="0" x2="0" y2="15" stroke="rgba(249,168,212,0.03)" stroke-width="1"></line>
+                  </pattern>
+                </defs>
+                <path
+                  d="M100,160 C60,130 0,100 0,55 C0,25 20,0 50,0 C72,0 90,14 100,35 C110,14 128,0 150,0 C180,0 200,25 200,55 C200,100 140,130 100,160Z"
+                  fill="url(#envGrad)" stroke="rgba(147,51,234,0.18)" stroke-width="1.5"
+                ></path>
+                <rect x="0" y="0" width="200" height="180" fill="url(#envTexture)" clip-path="url(#heartClip)"></rect>
+                <line x1="100" y1="30" x2="100" y2="140" stroke="rgba(147,51,234,0.08)" stroke-width="0.8" clip-path="url(#heartClip)"></line>
+              </svg>
+              <div class="env-seal">
+                <div class="env-seal-wax"></div>
+                <div class="env-seal-heart">♡</div>
+              </div>
+              <p class="env-label">For My Beloved</p>
+            </div>
+            <div class="env-shadow"></div>
+          </div>
+          <p class="env-hint">Tap gently, my love — something lovely awaits inside♡</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pemisah Bercahaya 3 -->
+    <div class="glow-divider" align="center"><span>♋</span><span>✨</span><span>🦁</span></div>
+
+    <!-- Bagian Harapan -->
+    <section class="section wish-section" id="wish-section" align="center">
+      <div class="wish-bg-anim" id="wish-bg-anim">
+        <div class="wish-bg-layer wish-bg-layer-1"></div>
+        <div class="wish-bg-layer wish-bg-layer-2"></div>
+        <div class="wish-bg-layer wish-bg-layer-3"></div>
+      </div>
+      <div class="wish-float-emojis" id="wish-float-emojis"></div>
+      <div class="blow-effects" id="blow-effects"></div>
+      <h2 class="section-heading wish-heading">✨ Make a Wish, My Sweetest Love ✨</h2>
+      <div class="wish-stage" align="center">
+        <div class="wish-cake" id="wish-cake">
+          <div class="candle-glow" id="candle-glow"></div>
+          <div class="candle">
+            <div class="candle-body"></div>
+            <div class="candle-wick"></div>
+            <div class="candle-flame" id="candle-flame">
+              <div class="flame-inner"></div>
+            </div>
+            <div class="smoke-container" id="smoke-container"></div>
+          </div>
+          <div class="wish-cake-body">
+            <div class="cake-frosting"></div>
+            <div class="cake-dots"></div>
+          </div>
+          <div class="cake-shadow"></div>
+        </div>
+        <p class="wish-hint" id="wish-hint">Gently blow the candle and whisper your sweetest wish, my love! 💫</p>
+        <div class="wish-message" id="wish-message">
+          <p class="wish-text">The stars just heard you — your wish is already on its way, darling!💫🌟✨</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pemisah Bercahaya 4 -->
+    <div class="glow-divider" align="center"><span>✧</span><span>🎀</span><span>✧</span></div>
+
+    <!-- Bagian Kejutan -->
+    <section class="section surprise-section" id="surprise-section" align="center">
+      <h2 class="section-heading">🎁 A Little Surprise, Wrapped in All My Love♡</h2>
+      <div class="gift-stage" align="center">
+        <div class="gift-box" id="gift-box">
+          <div class="gift-lid-wrap">
+            <div class="gift-bow">
+              <div class="bow-loop bow-l"></div>
+              <div class="bow-loop bow-r"></div>
+              <div class="bow-center"></div>
+            </div>
+            <div class="gift-lid"></div>
+          </div>
+          <div class="gift-body">
+            <div class="gift-stripe gift-stripe-v"></div>
+            <div class="gift-stripe gift-stripe-h"></div>
+          </div>
+          <div class="gift-shadow"></div>
+        </div>
+        <p class="gift-hint" id="gift-hint">Go on, tap the gift, my love — something adorable is waiting inside!</p>
+      </div>
+    </section>
+
+    <!-- Pemisah Bercahaya 5 -->
+    <div class="glow-divider" align="center"><span>✦</span><span>♡</span><span>✦</span></div>
+
+    <!-- Catatan Kaki -->
+    <footer class="footer" align="center">
+      <div class="footer-icons">♡ 🦀 ♡ ♋ 🦁 ♡ 🐑 ♡</div>
+      <p class="footer-text">Crafted with ♡ just for you, always and forever. -Gre</p>
+    </footer>
+  </main>
+
+  <!-- Modal Surat -->
+  <div class="letter-modal" id="letter-modal">
+    <div class="letter-modal-inner" align="center">
+      <div class="letter-paper">
+        <div class="letter-paper-header">
+          <span class="letter-rose">🌸</span>
+          <span class="letter-date">July 5, 2026</span>
+          <span class="letter-rose">🌸</span>
+        </div>
+        <h2 class="letter-modal-title">To the One Who Makes My Entire World Blossom♡</h2>
+        <div class="letter-modal-body" id="letter-content">
+          <p data-typewriter>My dearest love, you are the reason my heart wakes up singing every single morning!♡</p>
+          <p data-typewriter>On this day the stars conspired to gift you to the world, I need you to know — you are the kind of magic people spend lifetimes dreaming of. The way your smile turns the most ordinary moments into golden memories, the way your laughter makes everything feel like the sweetest love song ever written... you make this world infinitely gentler, warmer, and more beautiful simply by being you.</p>
+          <p data-typewriter>As you step into this brand-new chapter, I hope every secret wish you've ever whispered to the moon floats back to you wrapped in stardust. May your heart overflow with the same boundless joy you so effortlessly pour into everyone around you. May love surprise you in the most enchanting and adorable ways — today, tomorrow, and in every beautiful forever that follows.</p>
+          <p data-typewriter>Thank you for being the most radiant, brilliant, and breathtakingly adorable soul in my entire universe. The world is so unimaginably lucky to have you — please never, ever forget how deeply and endlessly you are cherished, my love!</p>
+          <p data-typewriter>Here's to another year of your extraordinary, sparkly, and absolutely irresistible self — may it be your most beautiful one yet!</p>
+        </div>
+        <div class="letter-modal-sign">
+          <div class="letter-sign-xo">xoxo</div>
+          <span class="letter-modal-sign-love">With every heartbeat I'll ever have,</span>
+          <span class="letter-modal-sign-name">Yours, now and for all eternity. -Gre</span>
+        </div>
+        <div class="letter-paper-footer">🌺 🌷 🌸</div>
+      </div>
+      <button class="letter-modal-close" id="letter-close-btn">Fold It Back with All My Love♡</button>
+    </div>
+  </div>
+
+  <!-- Modal Kejutan -->
+  <div class="surprise-modal" id="surprise-modal">
+    <div class="surprise-modal-inner" align="center">
+      <div class="surprise-float-hearts" id="surprise-float-hearts"></div>
+
+      <div class="surprise-romantic-frame">
+        <div class="surprise-frame-corner surprise-frame-tl"></div>
+        <div class="surprise-frame-corner surprise-frame-tr"></div>
+        <div class="surprise-frame-corner surprise-frame-bl"></div>
+        <div class="surprise-frame-corner surprise-frame-br"></div>
+
+        <div class="surprise-header">
+          <div class="surprise-header-glow"></div>
+          <div class="surprise-stars">✨ 🌟 💫 🌟 ✨</div>
+          <div class="surprise-cake-icon">🎂</div>
+          <div class="surprise-age-badge">Happy Birthday!</div>
+        </div>
+
+        <h2 class="surprise-title">Aik Jeje♡</h2>
+        <p class="surprise-subtitle">The day the stars made their most beautiful wish come true</p>
+
+        <div class="surprise-divider">
+          <span class="surprise-divider-line"></span>
+          <span class="surprise-divider-heart">♡</span>
+          <span class="surprise-divider-line"></span>
+        </div>
+
+        <div class="surprise-content">
+          <div class="surprise-msg-block">
+            <div class="surprise-msg-icon">🌸</div>
+            <p class="surprise-msg">On this most enchanting day, I want you to know — you are the kind of magic people spend lifetimes dreaming of. Every smile you share turns ordinary moments into golden memories, and every laugh you give makes the whole world feel like the sweetest love song ever written.</p>
+          </div>
+
+          <div class="surprise-msg-block">
+            <div class="surprise-msg-icon">🦋</div>
+            <p class="surprise-msg">You make this universe infinitely gentler, warmer, and more beautiful simply by being you. The way you light up every room, the way your kindness touches every soul — you are a living, breathing miracle, and I am endlessly grateful the stars aligned to bring you into this world.</p>
+          </div>
+
+          <div class="surprise-msg-block">
+            <div class="surprise-msg-icon">💫</div>
+            <p class="surprise-msg">May every secret wish you've ever whispered to the moon float back to you wrapped in stardust. May love find you in the most enchanting ways — today, tomorrow, and in every beautiful forever that follows. You deserve all the happiness the universe has to offer.</p>
+          </div>
+        </div>
+
+        <div class="surprise-divider">
+          <span class="surprise-divider-line"></span>
+          <span class="surprise-divider-heart">♡</span>
+          <span class="surprise-divider-line"></span>
+        </div>
+
+        <div class="surprise-sign">
+          <div class="surprise-sign-xo">xoxo</div>
+          <div class="surprise-sign-label">With all my love, today and always,</div>
+          <div class="surprise-sign-name">-Gre♡</div>
+        </div>
+
+        <div class="surprise-animals">
+          <span class="surprise-animal-item">♋</span>
+          <span class="surprise-animal-item">🦀</span>
+          <span class="surprise-animal-item">🐱</span>
+          <span class="surprise-animal-item">🧸</span>
+          <span class="surprise-animal-item">🦋</span>
+          <span class="surprise-animal-item">🐑</span>
+          <span class="surprise-animal-item">🌸</span>
+          <span class="surprise-animal-item">🦁</span>
+        </div>
+      </div>
+
+      <button class="surprise-ok" id="surprise-ok">You Made My Heart Flutter♡</button>
+    </div>
+  </div>
+
+  <!-- Kanvas Konfeti -->
+  <canvas id="confetti-canvas" class="confetti-canvas"></canvas>
+
+  <!-- Visualisasi Audio -->
+  <div class="audio-viz" id="audio-viz"></div>
+
+  <!-- Musik Latar -->
+  <audio id="bg-music" loop preload="auto">
+    <source src="https://github.com/grevaldoimanuel/ultahaikjeje2026/raw/refs/heads/main/Shape%20of%20My%20Heart.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Skrip Utama -->
+  <script src="script.js"></script>
+</body>
+</html>
